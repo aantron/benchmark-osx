@@ -10,6 +10,7 @@ module Run_lwt(M : READDIR_LWT) : BENCHMARK = struct
   open Lwt.Infix
 
   let time () =
+    assert (Lwt_sys.have `libev);
     Lwt_engine.(set (new libev));
     Lwt_main.run (
       let start = Mtime.counter () in
